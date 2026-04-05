@@ -1,0 +1,445 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratham's Coding Community | Dhanbad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ==================== CSS STYLES ==================== */
+        :root {
+            --primary: #6C63FF;
+            --secondary: #2A2A2A;
+            --light: #F4F4F4;
+            --white: #FFFFFF;
+            --text: #333333;
+            --success: #28a745;
+            --danger: #dc3545;
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        }
+        
+        body { 
+            background-color: var(--light); 
+            color: var(--text); 
+            line-height: 1.6; 
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #6C63FF, #4834d4);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .header-content h1 { 
+            font-size: 2.5rem; 
+            margin-bottom: 10px; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header-content p { 
+            font-size: 1.2rem; 
+            opacity: 0.9; 
+        }
+        .location-badge { 
+            background: rgba(255,255,255,0.2); 
+            padding: 8px 20px; 
+            border-radius: 25px; 
+            display: inline-block; 
+            margin-top: 15px; 
+            font-weight: 500;
+        }
+
+        /* Container */
+        .container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+
+        /* Sections */
+        section { 
+            margin-bottom: 60px; 
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        h2 { 
+            border-left: 5px solid var(--primary); 
+            padding-left: 15px; 
+            margin-bottom: 20px; 
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+
+        /* Resources Grid */
+        .resource-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 25px; 
+            margin-top: 20px; 
+        }
+        .card { 
+            background: #f8f9fa; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1); 
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        .card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .card i { 
+            font-size: 50px; 
+            color: var(--primary); 
+            margin-bottom: 15px; 
+        }
+        .card h3 { 
+            color: var(--secondary); 
+            margin-bottom: 10px; 
+            font-size: 1.3rem;
+        }
+        .card p { 
+            color: #666; 
+            margin-bottom: 15px; 
+            font-size: 0.95rem;
+        }
+        .btn { 
+            display: inline-block; 
+            background: var(--primary); 
+            color: var(--white); 
+            padding: 12px 25px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: 600;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { 
+            background: #4834d4; 
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Community Form */
+        .community-box { 
+            background: #f8f9fa; 
+            padding: 30px; 
+            border-radius: 12px; 
+            border: 2px dashed var(--primary);
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+        }
+        input, textarea { 
+            width: 100%; 
+            padding: 15px; 
+            border: 2px solid #ddd; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            transition: border-color 0.3s;
+        }
+        input:focus, textarea:focus { 
+            outline: none; 
+            border-color: var(--primary);
+        }
+        .submit-btn { 
+            background: var(--secondary); 
+            color: var(--white); 
+            border: none; 
+            padding: 15px 40px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 1.1rem; 
+            font-weight: 600;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        .submit-btn:hover { 
+            background: #000; 
+        }
+
+        /* Posts List */
+        .posts-list { 
+            margin-top: 30px; 
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .post { 
+            background: var(--white); 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .post-header { 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 0.9rem; 
+            color: #666; 
+            margin-bottom: 10px; 
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .post-author { 
+            font-weight: bold; 
+            color: var(--primary);
+        }
+        .post-content { 
+            color: var(--text);
+            line-height: 1.5;
+        }
+
+        /* Contact Section */
+        .contact-info { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 20px; 
+            justify-content: center;
+        }
+        .contact-item { 
+            background: #f8f9fa; 
+            padding: 20px; 
+            border-radius: 10px; 
+            text-align: center;
+            min-width: 200px;
+        }
+        .contact-item i { 
+            font-size: 30px; 
+            color: var(--primary); 
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer { 
+            background: var(--secondary); 
+            color: var(--white); 
+            text-align: center; 
+            padding: 30px; 
+            margin-top: 50px; 
+        }
+        footer p { 
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) { 
+            .header-content h1 { 
+                font-size: 1.8rem; 
+            }
+            .header-content p { 
+                font-size: 1rem; 
+            }
+            .resource-grid { 
+                grid-template-columns: 1fr; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <h1>👨‍💻 Pratham's Coding Community</h1>
+            <p>📍 Dhanbad, Jharkhand | 🇮🇳 India</p>
+            <div class="location-badge">
+                <i class="fas fa-code"></i> Developer & Learner
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- Resources Section -->
+        <section id="resources">
+            <h2>📚 Study Resources & PPTs</h2>
+            <p style="margin-bottom: 20px; color: #666;">Download notes and presentations for different languages.</p>
+            <div class="resource-grid">
+                <div class="card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Basic to Advanced Python PPTs & Syntax Notes.</p>
+                    <a href="#" class="btn" onclick="alert('Please add your Python PPT file link here!')">Download PPT</a>
+                </div>
+                <div class="card">
+                    <i class="fab fa-html5"></i>
+                    <h3>HTML & CSS</h3>
+                    <p>Web Development Basics & Structure.</p>
+                    <a href="#" class="btn" onclick="alert('Please add your HTML PPT file link here!')">Download PPT</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-code"></i>
+                    <h3>C++</h3>
+                    <p>Data Structures, Algorithms & OOPs.</p>
+                    <a href="#" class="btn" onclick="alert('Please add your C++ PPT file link here!')">Download PPT</a>
+                </div>
+                <div class="card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>General Notes</h3>
+                    <p>Exam preparation and interview tips.</p>
+                    <a href="#" class="btn" onclick="alert('Please add your Notes file link here!')">Download Notes</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community">
+            <h2>💬 Community Committee</h2>
+            <div class="community-box">
+                <h3>Share Your Thoughts</h3>
+                <p style="margin-bottom: 15px; font-size: 0.9rem; color: #666;">Post your questions, updates, or coding tips.</p>
+                
+                <div class="form-group">
+                    <input type="text" id="username" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <textarea id="message" rows="4" placeholder="Write your message here..."></textarea>
+                </div>
+                <button class="submit-btn" onclick="addPost()">Post Message</button>
+            </div>
+
+            <div class="posts-list" id="postsContainer">
+                <!-- Posts will appear here -->
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>📞 Contact Pratham</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Location</h4>
+                    <p>Dhanbad, Jharkhand</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>pratham.dada@example.com</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h4>Phone</h4>
+                    <p>+91 XXXXXXXXXX</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Pratham Dada | Built for the Coding Community</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">Made with ❤️ in Dhanbad, Jharkhand</p>
+    </footer>
+
+    <script>
+        // ==================== JAVASCRIPT FUNCTIONALITY ====================
+        
+        // Load posts from localStorage when page opens
+        window.onload = function() {
+            loadPosts();
+        };
+
+        function addPost() {
+            const nameInput = document.getElementById('username');
+            const msgInput = document.getElementById('message');
+            const container = document.getElementById('postsContainer');
+
+            const name = nameInput.value.trim();
+            const msg = msgInput.value.trim();
+
+            if (name === "" || msg === "") {
+                alert("Please enter both name and message!");
+                return;
+            }
+
+            // Create Post HTML
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post';
+            
+            const date = new Date().toLocaleString('en-IN', {
+                day: 'numeric', month: 'short', year: 'numeric',
+                hour: '2-digit', minute: '2-digit'
+            });
+
+            postDiv.innerHTML = `
+                <div class="post-header">
+                    <span class="post-author"><i class="fas fa-user"></i> ${name}</span>
+                    <span><i class="far fa-clock"></i> ${date}</span>
+                </div>
+                <div class="post-content">${msg}</div>
+            `;
+
+            // Add to top of list
+            container.insertBefore(postDiv, container.firstChild);
+
+            // Clear inputs
+            nameInput.value = "";
+            msgInput.value = "";
+
+            // Save to LocalStorage
+            savePost(name, msg);
+        }
+
+        function savePost(name, msg) {
+            let posts = JSON.parse(localStorage.getItem('prathamPosts')) || [];
+            posts.unshift({ name, msg, date: new Date().toLocaleString() });
+            localStorage.setItem('prathamPosts', JSON.stringify(posts));
+        }
+
+        function loadPosts() {
+            let posts = JSON.parse(localStorage.getItem('prathamPosts')) || [];
+            const container = document.getElementById('postsContainer');
+            
+            // Clear existing posts
+            container.innerHTML = '';
+            
+            posts.forEach(post => {
+                const postDiv = document.createElement('div');
+                postDiv.className = 'post';
+                
+                postDiv.innerHTML = `
+                    <div class="post-header">
+                        <span class="post-author"><i class="fas fa-user"></i> ${post.name}</span>
+                        <span><i class="far fa-clock"></i> ${post.date}</span>
+                    </div>
+                    <div class="post-content">${post.msg}</div>
+                `;
+                container.appendChild(postDiv);
+            });
+        }
+
+        // Optional: Clear all posts (for testing)
+        function clearPosts() {
+            localStorage.removeItem('prathamPosts');
+            loadPosts();
+            alert('All posts cleared!');
+        }
+    </script>
+</body>
+</html>
